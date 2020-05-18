@@ -24,4 +24,7 @@ void getHttp() async {
 
 main() {
   print('Hello World');
+
+  var xx = new GetTimu();
+  xx.getHttp();
 }
