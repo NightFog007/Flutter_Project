@@ -15,7 +15,6 @@ void main() => runApp(MaterialApp(
       //添加路由表
       routes: <String, WidgetBuilder>{
         "app": (BuildContext context) => App(),
-        // "/friends": (_) => WebviewScaffold(
         //       //Webview插件
         //       url: "https://flutter.io/",
         //       appBar: AppBar(

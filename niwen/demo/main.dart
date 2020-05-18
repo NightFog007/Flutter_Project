@@ -14,7 +14,7 @@ class GetTimu {
 void getHttp() async {
   try {
     Response response = await Dio().get("http://api.tianapi.com/txapi/baiketiku/index?key=ca4f25b93495f1001c3a81dd9972b89c");
-    print(response);
+    print(response.data);
   } catch (e) {
     print(e);
   }

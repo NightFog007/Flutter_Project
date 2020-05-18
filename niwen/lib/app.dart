@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:niwenwoda/right/rightPage.dart';
-import 'package:niwenwoda/wrong/wrongPage.dart';
 import './personal.dart';
 import './wrong/wrongPage.dart';
 import './right/rightPage.dart';
