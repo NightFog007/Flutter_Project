@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './rightData.dart';
+import '../common/question_data.dart';
 import 'dart:ui';
 import '../common/http_service.dart';
 import 'dart:convert';
@@ -14,33 +14,7 @@ class RightPage extends StatefulWidget {
 }
 
 class _RightPageState extends State<RightPage> {
-   @override
-  void initState() {
-    super.initState();
-    //获取产品数据
-    getProductList();
-  }
-  //获取产品数据
-  void getProductList() async {
-    //请求url
-    var url = 'http://api.tianapi.com/txapi/baiketiku/index?key=ca4f25b93495f1001c3a81dd9972b89c';
-    
-    //调用请求方法传入url及表单数据
-    await request(url).then((value) {
-      //Json解码 value为服务端返回的数据
-      var data = json.decode(value.toString());
-      //打印数据
-      print('产品列表数据Json格式:::' + data.toString());
-      //将Json数据转换成ProductListModel
-      ProductListModel productList = ProductListModel.fromJson(data);
-      //将返回的数据放入ProductProvider里
-      if (productList.data == null) {
-        Provider.of<ProductProvider>(context).getProductList([]);
-      } else {
-        Provider.of<ProductProvider>(context).getProductList(productList.data);
-      }
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {

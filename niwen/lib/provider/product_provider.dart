@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../right/rightData.dart';
+import '../common/question_data.dart';
 //产品数据处理
 class ProductProvider with ChangeNotifier{
   //产品列表数据
