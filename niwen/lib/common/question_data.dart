@@ -54,7 +54,7 @@ class ProductModel{
     answerA = json['answerA'];
     answerB = json['answerB'];
     answerC = json['answerC'];
-    answerD = json['answerDD'];
+    answerD = json['answerD'];
     answer = json['answer'];
   }
 
