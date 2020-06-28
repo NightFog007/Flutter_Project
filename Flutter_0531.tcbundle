@@ -1,0 +1,241 @@
+{
+  "supported_languages" : [
+    "any"
+  ],
+  "is_enabled" : true,
+  "description" : "",
+  "name" : "Flutter",
+  "expanders" : [
+    {
+      "is_enabled" : true,
+      "supported_languages" : [
+        "any"
+      ],
+      "description" : "",
+      "name" : "list",
+      "identifier" : "",
+      "pattern" : "list ${arr:word}",
+      "output_template" : "var ${arr} = [\"Tom\", \"Andy\", \"Jack\"];\n\/\/var ${arr} = List.of([1,2,3]);\n${arr}.add(\"test\");\n${arr}.forEach((v) => print(v));"
+    },
+    {
+      "name" : "map",
+      "description" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "is_enabled" : true,
+      "output_template" : "\/\/ var map1 = {\"name\": \"Tom\", 'sex': 'male'}; \nvar ${foo} = new Map();\n${foo}['name'] = 'Tom';\n${foo}['sex'] = 'male';\n${foo}.forEach((k,v) => print('${k } :  ${v }'));",
+      "identifier" : "",
+      "pattern" : "map ${foo:word}"
+    },
+    {
+      "identifier" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "pattern" : "textrich",
+      "name" : "textRich - 富文本",
+      "output_template" : "\nTextStyle blackStyle = TextStyle(fontWeight: FontWeight.normal, fontSize: 20, color: Colors.black);\nTextStyle redStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.red);\nText.rich(\n    TextSpan(\n        children: <TextSpan>[\n          TextSpan(text:'文本是视图系统中常见的控件，它用来显示一段特定样式的字符串，类似', style: redStyle), \n          TextSpan(text:'Android', style: blackStyle),\n          TextSpan(text:'中的', style:redStyle), \n          TextSpan(text:'TextView', style: blackStyle)\n        ]),\n  textAlign: TextAlign.center,\n),",
+      "description" : "",
+      "is_enabled" : true
+    },
+    {
+      "identifier" : "",
+      "name" : "FloatingActionButton - 圆形按钮",
+      "supported_languages" : [
+        "any"
+      ],
+      "description" : "",
+      "output_template" : "FloatingActionButton(\n          child: Text(\"${foo}\"),\n          onPressed: () {\n            print(\"FloatingActionButton Click\");\n          },\n        ),",
+      "is_enabled" : true,
+      "pattern" : "float ${foo:word}"
+    },
+    {
+      "description" : "",
+      "pattern" : "raise ${foo:word}",
+      "is_enabled" : true,
+      "output_template" : "RaisedButton(\n          child: Text(\"${foo}\"),\n          onPressed: () {\n            print(\"RaisedButton Click\");\n          },\n        ),",
+      "identifier" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "name" : "RaisedButton - 凸起按钮"
+    },
+    {
+      "output_template" : "FlatButton(\n          child: Text(\"${foo}\"),\n          onPressed: () {\n            print(\"FlatButton Click\");\n          },\n        ),",
+      "name" : "FlatButton - 扁平按钮",
+      "description" : "",
+      "pattern" : "flat ${foo:word}",
+      "identifier" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "is_enabled" : true
+    },
+    {
+      "output_template" : "ListView(\n  children: <Widget>[\n    \/\/设置ListTile组件的标题与图标 \n    ListTile(leading: Icon(Icons.map),  title: Text('Map')),\n    ListTile(leading: Icon(Icons.mail), title: Text('Mail')),\n    ListTile(leading: Icon(Icons.message), title: Text('Message')),\n  ]),",
+      "description" : "",
+      "identifier" : "",
+      "pattern" : "listview",
+      "supported_languages" : [
+        "any"
+      ],
+      "name" : "ListView",
+      "is_enabled" : true
+    },
+    {
+      "name" : "Container",
+      "pattern" : "container",
+      "output_template" : "Container(\n  child: Text('Container（容器）在UI框架中是一个很常见的概念，Flutter也不例外。'),\n  padding: EdgeInsets.all(18.0), \/\/ 内边距\n  margin: EdgeInsets.all(44.0), \/\/ 外边距\n  width: 180.0,\n  height:240,\n  alignment: Alignment.center, \/\/ 子Widget居中对齐\n  decoration: BoxDecoration( \/\/Container样式\n    color: Colors.red, \/\/ 背景色\n    borderRadius: BorderRadius.circular(10.0), \/\/ 圆角边框\n  ),\n),",
+      "supported_languages" : [
+        "any"
+      ],
+      "identifier" : "",
+      "description" : "",
+      "is_enabled" : true
+    },
+    {
+      "name" : "Padding",
+      "description" : "",
+      "is_enabled" : true,
+      "pattern" : "padding",
+      "identifier" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "output_template" : "Padding(\n  padding: EdgeInsets.all(44.0),\n  child: Text('Container（容器）在UI框架中是一个很常见的概念，Flutter也不例外。'),\n),"
+    },
+    {
+      "is_enabled" : true,
+      "name" : "基础text",
+      "description" : "",
+      "pattern" : "text ${foo:word}",
+      "output_template" : "Text(\n      \"${foo}\",\n      textAlign: TextAlign.center,\n      style: TextStyle(\n        fontSize: 20,\n        color: Colors.purple\n      ),\n),",
+      "supported_languages" : [
+        "any"
+      ],
+      "identifier" : ""
+    },
+    {
+      "output_template" : " OutlineButton(\n          child: Text(\"\u0018${foo}\"),\n          onPressed: () {\n            print(\"OutlineButton Click\");\n          },\n        ),",
+      "name" : "OutlineButton",
+      "description" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "is_enabled" : true,
+      "identifier" : "",
+      "pattern" : "outline ${foo:word}"
+    },
+    {
+      "pattern" : "netimage ${foo:word}",
+      "name" : "网络图片",
+      "identifier" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "output_template" : "Container(\n        child: Image.network(\n          \"${foo}\",\n          alignment: Alignment.topCenter,\n          repeat: ImageRepeat.repeatY,\n          color: Colors.red,\n          colorBlendMode: BlendMode.colorDodge,\n        ),\n        width: 300,\n        height: 300,\n        color: Colors.yellow,\n      ),",
+      "is_enabled" : true,
+      "description" : ""
+    },
+    {
+      "name" : "圆形图片",
+      "output_template" : "CircleAvatar(\n        radius: 100,\n        backgroundImage: NetworkImage(\"${foo}\"),\n        child: Container(\n          alignment: Alignment(0, .5),\n          width: 200,\n          height: 200,\n          child: Text(\"兵长利威尔\")\n        ),\n      ),",
+      "is_enabled" : true,
+      "description" : "",
+      "identifier" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "pattern" : "yuanxing ${foo:word}"
+    },
+    {
+      "output_template" : " ClipRRect(\n        borderRadius: BorderRadius.circular(10),\n        child: Image.network(\n          \"${foo}\",\n          width: 200,\n          height: 200,\n        ),\n      ),",
+      "description" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "is_enabled" : true,
+      "pattern" : "yuanjiao ${foo:word}",
+      "identifier" : "",
+      "name" : "圆角图片"
+    },
+    {
+      "identifier" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "is_enabled" : true,
+      "output_template" : "\/\/\"在State里, 定义类变量\"\n\/\/在1. define var in State\nfinal textEditingController = TextEditingController();\n  \n\/\/ 1.设置默认值 define 默认值value in init()\ntextEditingController.text = \"Hello World\";\n\n\/\/ 2.监听文本框 add listener in init()\ntextEditingController.addListener(() {\n  print(\"textEditingController:${ textEditingController.text }\");\n});\n    \n\/\/ 3. define textfield in Body\n    TextField(\n      decoration: InputDecoration(\n        icon: Icon(Icons.people),\n        labelText: \"${foo}\",\n        hintText: \"请输入用户名\",\n        border: InputBorder.none,\n        filled: true,\n        fillColor: Colors.lightGreen\n      ),\n      onChanged: (value) {\n        print(\"onChanged:$value\");\n      },\n      onSubmitted: (value) {\n        print(\"onSubmitted:$value\");\n      },\n    ),",
+      "name" : "textfield",
+      "description" : "",
+      "pattern" : "tf ${foo:word}"
+    },
+    {
+      "supported_languages" : [
+        "any"
+      ],
+      "is_enabled" : true,
+      "identifier" : "",
+      "description" : "",
+      "pattern" : "stateful ${name:word}",
+      "name" : "stateful",
+      "output_template" : "class ${name} extends StatefulWidget {\n    @override\n    createState() => new ${name}State();\n}\n\nclass ${name}State  extends State<${name}> {\n    @override\n    Widget build(BuildContext context) {\n  \t\t\t\n  \t\treturn new Text(\"hello\");\n    }\n}"
+    },
+    {
+      "identifier" : "",
+      "pattern" : "route",
+      "is_enabled" : true,
+      "name" : "新路由页面",
+      "supported_languages" : [
+        "any"
+      ],
+      "description" : "",
+      "output_template" : "    Navigator.of(context).push(\n        new MaterialPageRoute(\n           builder: (context) {\n             return new Scaffold(\n                  appBar: new AppBar(\n                  title: new Text('hahtwo'),\n                ),\n                body: new  RaisedButton(\n                      child: Text(\"test\"),\n                      onPressed: () {\n                        print(\"RaisedButton Click\");\n                      },\n                    ),           \n              );\n           },\n      ),\n    );"
+    },
+    {
+      "supported_languages" : [
+        "any"
+      ],
+      "is_enabled" : true,
+      "output_template" : "(\n      appBar: new AppBar(\n        leading: new IconButton(\n          icon: new Icon(Icons.menu),\n          tooltip: 'Navigation menu',\n          onPressed: null,\n        ),\n        title: new Text('Example title'),\n        actions: <Widget>[\n          new IconButton(\n            icon: new Icon(Icons.search),\n            tooltip: 'Search',\n            onPressed: null,\n          ),\n        ],\n      ),\n      \/\/body占屏幕的大部分\n      body: new Center(\n        child: new Text('Hello, world!'),\n      ),\n      floatingActionButton: new FloatingActionButton(\n        tooltip: 'Add', \/\/ used by assistive technologies\n        child: new Icon(Icons.add),\n        onPressed: null,\n      ),\n    );",
+      "name" : "scaffold",
+      "identifier" : "",
+      "description" : "",
+      "pattern" : ""
+    },
+    {
+      "is_enabled" : true,
+      "supported_languages" : [
+        "any"
+      ],
+      "identifier" : "",
+      "name" : "Container",
+      "pattern" : "container",
+      "description" : "",
+      "output_template" : "Container(\n  child: Text('Container（容器）在UI框架中是一个很常见的概念，Flutter也不例外。'),\n  padding: EdgeInsets.all(18.0), \/\/ 内边距\n  margin: EdgeInsets.all(44.0), \/\/ 外边距\n  width: 180.0,\n  height:240,\n  alignment: Alignment.center, \/\/ 子Widget居中对齐\n  decoration: BoxDecoration( \/\/Container样式\n    color: Colors.red, \/\/ 背景色\n    borderRadius: BorderRadius.circular(10.0), \/\/ 圆角边框\n  ),\n),"
+    },
+    {
+      "output_template" : "class ${cName} extends StatelessWidget { \n  @override \n  Widget build(BuildContext context){\n    return new Scaffold(\n      appBar: new AppBar(\n        title: Text('这是第一页'),\n      ),\n      body: Center(\n        child: RaisedButton( \n          onPressed: (){\n            Navigator.pushNamed(context, '\/second');\n          },\n          child: Text( \n            '这是第一页',\n            style: TextStyle(fontSize: 28.0),\n          ),\n        ),\n      ),\n    );\n  }\n}",
+      "is_enabled" : true,
+      "name" : "stateLessWidget",
+      "supported_languages" : [
+        "any"
+      ],
+      "pattern" : "sless ${cName:word}",
+      "identifier" : "",
+      "description" : ""
+    },
+    {
+      "description" : "",
+      "supported_languages" : [
+        "any"
+      ],
+      "identifier" : "",
+      "pattern" : "sfull ${cName:word}",
+      "is_enabled" : true,
+      "output_template" : "class ${cName} extends StatefulWidget {\n  ${cName}({Key key, this.title}) : super(key: key);\n  final String title;\n  @override\n  _${cName}State createState() => _${cName}State();\n}\n\nclass _${cName}State extends State<${cName}> {\n  int _counter = 0;\n  void _incrementCounter() {\n    setState(() {\n      _counter++;\n    });\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    \n    return Scaffold(\n      appBar: AppBar(\n        title: Text(widget.title),\n      ),\n      body: Center(\n        child: Column(\n          mainAxisAlignment: MainAxisAlignment.center,\n          children: <Widget>[\n            Text(\n              'You have pushed the button this many times:',\n            ),\n            Text(\n              '$_counter',\n              style: Theme.of(context).textTheme.display1,\n            ),      \n          ],\n        ),\n      ),\n      floatingActionButton: FloatingActionButton(\n        onPressed: _incrementCounter,\n        tooltip: 'Increment',\n        child: Icon(Icons.add),\n      ), \n    );\n  }\n}",
+      "name" : "stateFulWidget"
+    }
+  ]
+}
