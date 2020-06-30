@@ -36,18 +36,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   var sum = 0;
 
   var answer = 'A';
   @override
   Widget build(BuildContext context) {
     if (Provider.of<GetData>(context).title != null) {
-          
     } else {
       Provider.of<GetData>(context).getTitleList();
     }
-    
+
     answer = Provider.of<GetData>(context).answer;
 
     return Scaffold(
@@ -63,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
               //时间顶部对齐
               alignment: AlignmentDirectional.topStart,
               height: 70,
-              // margin: const EdgeInsets.only(right: 55.0,top: 22.0),
+              // margin: const EdgeInsets.only(right: 2.0,top: 22.0),
               child: Text(
                 //格式化时间
                 '广告占位',
@@ -72,86 +70,132 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text("${Provider.of<GetData>(context).title}",
                 style: TextStyle(fontSize: 22.0, color: Colors.white)),
-            Container(
-              child: FlatButton(
-                padding: new EdgeInsets.only(right: 280),
-                color: Colors.blueGrey,
-                child: Text(
-                  "A. ${Provider.of<GetData>(context).answerA}",
-                  style: TextStyle(fontSize: 22.0, color: Colors.white),
-                ),
-                onPressed: () {
-                    if (answer == "A"){
-                      print("回答正确");
-                       sum++;
-                        _changQuestion();
-                       
-                    } else {
-                      print("回答错误");
-                    }
-                },
-              ),
-            ),
-            Container(
-              child: FlatButton(
-                padding: new EdgeInsets.only(right: 280),
-                color: Colors.blueGrey,
-                child: Text(
-                  "B. ${Provider.of<GetData>(context).answerB}",
-                  style: TextStyle(fontSize: 22.0, color: Colors.white),
-                ),
-                onPressed: () {
-                                      if (answer == "B"){
-                      print("回答正确");
-                       sum++;
-                        _changQuestion();
-                        
-                    } else {
-                      print("回答错误");
-                    }
-                },
-              ),
-            ),
-            Container(
-              child: FlatButton(
-                padding: new EdgeInsets.only(right: 280),
-                color: Colors.blueGrey,
-                child: Text(
-                  "C. ${Provider.of<GetData>(context).answerC}",
-                  style: TextStyle(fontSize: 22.0, color: Colors.white),
-                ),
-                onPressed: () {
-                                     if (answer == "C"){
-                      print("回答正确");
-                          sum++;
-                        _changQuestion();
-                     
-                    } else {
-                      print("回答错误");
-                    }
-                },
-              ),
-            ),
-            Container(
-              child: FlatButton(
-                padding: new EdgeInsets.only(right: 280),
-                color: Colors.blueGrey,
-                child: Text(
-                  "D. ${Provider.of<GetData>(context).answerD}",
-                  style: TextStyle(fontSize: 22.0, color: Colors.white),
-                ),
-                onPressed: () {
-                    if (answer == "D"){
-                      print("回答正确");
+           
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.start,
+
+              children: <Widget>[
+                Expanded(
+                  child: FlatButton(
+                    // padding: new EdgeInsets.only(right: 200),
+                    color: Colors.blueGrey,
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "A. ${Provider.of<GetData>(context).answerA}",
+                        style: TextStyle(fontSize: 22.0, color: Colors.white),
+                        textAlign: TextAlign.start,
+                        maxLines: 1,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (answer == "A") {
+                        print("回答正确");
                         sum++;
-                      _changQuestion();
-                     
-                    } else {
-                      print("回答错误");
-                    }
-                },
-              ),
+                        _changQuestion();
+                      } else {
+                        print("回答错误");
+                      }
+                    },
+                  ),
+                )
+              ],
             ),
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.start,
+
+              children: <Widget>[
+                Expanded(
+                  child: FlatButton(
+                    // padding: new EdgeInsets.only(right: 200),
+                    color: Colors.blueGrey,
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "B. ${Provider.of<GetData>(context).answerB}",
+                        style: TextStyle(fontSize: 22.0, color: Colors.white),
+                        textAlign: TextAlign.start,
+                        maxLines: 1,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (answer == "B") {
+                        print("回答正确");
+                        sum++;
+                        _changQuestion();
+                      } else {
+                        print("回答错误");
+                      }
+                    },
+                  ),
+                )
+              ],
+            ),
+
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.start,
+
+              children: <Widget>[
+                Expanded(
+                  child: FlatButton(
+                    // padding: new EdgeInsets.only(right: 200),
+                    color: Colors.blueGrey,
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "C. ${Provider.of<GetData>(context).answerC}",
+                        style: TextStyle(fontSize: 22.0, color: Colors.white),
+                        textAlign: TextAlign.start,
+                        maxLines: 1,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (answer == "C") {
+                        print("回答正确");
+                        sum++;
+                        _changQuestion();
+                      } else {
+                        print("回答错误");
+                      }
+                    },
+                  ),
+                )
+              ],
+            ),
+
+
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.start,
+
+              children: <Widget>[
+                Expanded(
+                  child: FlatButton(
+                    // padding: new EdgeInsets.only(right: 200),
+                    color: Colors.blueGrey,
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "D. ${Provider.of<GetData>(context).answerD}",
+                        style: TextStyle(fontSize: 22.0, color: Colors.white),
+                        textAlign: TextAlign.start,
+                        maxLines: 1,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (answer == "D") {
+                        print("回答正确");
+                        sum++;
+                        _changQuestion();
+                      } else {
+                        print("回答错误");
+                      }
+                    },
+                  ),
+                )
+              ],
+            ),
+
+
           ],
         ),
       ),
@@ -167,7 +211,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _changQuestion() {
     setState(() {
       Provider.of<GetData>(context).getTitleList();
-      print("the sum is:" );
+      print("the sum is:");
       print(sum);
     });
   }
