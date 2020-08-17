@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  int _selectedIndex = 1; //当前选中项索引
+  int _selectedIndex = 0; //当前选中项索引
   final _widgetOptions = [
     one(),
     two(),
