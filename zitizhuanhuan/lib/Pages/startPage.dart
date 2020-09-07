@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:zitizhuanhuan/main.dart';
+import 'package:zitizhuanhuan/admob_info.dart';
 
 
 class StartPage extends StatefulWidget {
@@ -12,16 +13,46 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
 
+  var ad = new admob_info();
+
+  AdmobBannerSize bannerSize;
 
 
+  @override
+  void initState() {
+    super.initState();
+    ad.bannerSize = AdmobBannerSize.BANNER;
+    ad.init_screenad();
+  }
 
 
   @override
   Widget build(BuildContext context) {
 
         return Center(
-      // child: Text("StartPage"),
-      
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Positioned(
+                    child: AdmobBanner(
+                      adUnitId: ad.bannerUnitIdOne,
+                      adSize: ad.bannerSize,
+                      listener:
+                          (AdmobAdEvent event, Map<String, dynamic> args) {
+                        ad.handleEvent(event, args, 'Banner');
+                      },
+                    ),
+                    bottom: 20),
+            Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '3213',
+              style: Theme.of(context).textTheme.display1,
+            ),      
+          ],
+        ),
+    
     );
   
 
