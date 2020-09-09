@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
 
@@ -15,12 +14,12 @@ class admob_info {
   AdmobInterstitial interstitialAd;
 
   final String appId = Platform.isAndroid
-      ? 'ca-app-pub-9010870803829618~5717554287'
+      ? 'ca-app-pub-9010870803829618~8140498881'
       : 'ca-app-pub-9010870803829618~8140498881';
 
   final String bannerUnitIdOne = Platform.isAndroid
-      ? 'ca-app-pub-9010870803829618/5854614646'
-      : 'ca-app-pub-9010870803829618/9617232086';
+      ? 'ca-app-pub-9010870803829618/2460288445'
+      : 'ca-app-pub-9010870803829618/2460288445';
 
    final String bannerUnitIdTwo = Platform.isAndroid
       ? 'ca-app-pub-9010870803829618/5854614646'

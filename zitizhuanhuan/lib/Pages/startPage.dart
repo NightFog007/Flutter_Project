@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:zitizhuanhuan/main.dart';
-import 'package:zitizhuanhuan/admob_info.dart';
-
+import '../admob_info.dart';
 
 class StartPage extends StatefulWidget {
   StartPage({Key key, this.title}) : super(key: key);
@@ -12,11 +10,9 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-
+  GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
   var ad = new admob_info();
-
   AdmobBannerSize bannerSize;
-
 
   @override
   void initState() {
@@ -25,71 +21,55 @@ class _StartPageState extends State<StartPage> {
     ad.init_screenad();
   }
 
-
   @override
   Widget build(BuildContext context) {
+    var new_banner = AdmobBanner(
+      adUnitId: ad.bannerUnitIdOne,
+      adSize: AdmobBannerSize(width: 320, height: 90, name: 'BANNER'),
+      // adSize: ad.bannerSize,
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        ad.handleEvent(event, args, 'Banner');
+      },
+    );
 
-        return Center(
+    var new_flatButton = FlatButton(
+      color: Colors.lightGreen,
+      // color: Color.fromARGB(0, 22, 17, 175),
+      child: Text(
+        "点我,来一句情话吧",
+        style: TextStyle(fontSize: 20, color: Colors.white),
+      ),
+      textColor: Colors.white,
+
+      onPressed: () async {
+        print("hahahaha");
+        if (await ad.interstitialAd.isLoaded) {
+          ad.interstitialAd.show();
+        } else {
+          print("Interstitial ad is still loading...");
+        }
+      },
+    );
+
+    return Scaffold(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Positioned(
-                    child: AdmobBanner(
-                      adUnitId: ad.bannerUnitIdOne,
-                      adSize: ad.bannerSize,
-                      listener:
-                          (AdmobAdEvent event, Map<String, dynamic> args) {
-                        ad.handleEvent(event, args, 'Banner');
-                      },
-                    ),
-                    bottom: 20),
             Text(
               'You have pushed the button this many times:',
             ),
+            new_flatButton,
             Text(
-              '3213',
-              style: Theme.of(context).textTheme.display1,
-            ),      
+              'You have pushed the button this many times:',
+            ),
+            new_banner,
+            Text(
+              'You have pushed the button this many times:',
+            ),
           ],
         ),
-    
+      ),
     );
-  
-
-    
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: Text(widget.title),
-    //   ),
-    //   body: Center(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: <Widget>[
-    //         Text(
-    //           'You have pushed the button this many times:',
-    //         ),
-    //         Text(
-    //           '$_counter',
-    //           style: Theme.of(context).textTheme.display1,
-    //         ),      
-    //       ],
-    //     ),
-    //   ),
-    //   floatingActionButton: FloatingActionButton(
-    //     onPressed: _incrementCounter,
-    //     tooltip: 'Increment',
-    //     child: Icon(Icons.add),
-    //   ), 
-    // );
   }
 }
-
-
-// class StartPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text("StartPage"),
-//     );
-//   }
-// }

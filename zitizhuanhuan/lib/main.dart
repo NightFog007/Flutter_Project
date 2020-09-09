@@ -6,7 +6,7 @@ import 'Pages/startPage.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 
 void main() {
-  Admob.initialize("ca-app-pub-3940256099942544~1458002511");
+  Admob.initialize("ca-app-pub-9010870803829618~8140498881");
 
   runApp(MyApp());  
 }
@@ -41,45 +41,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
-  AdmobBannerSize bannerSize;
-  AdmobInterstitial interstitialAd;
+ 
   
     @override
   void initState() {
         _controller = PageController(initialPage: _position,);
 
     super.initState();
-    bannerSize = AdmobBannerSize.BANNER;
-    interstitialAd = AdmobInterstitial(
-      adUnitId: "ca-app-pub-3940256099942544/4411468910",
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        if (event == AdmobAdEvent.closed) interstitialAd.load();
-        handleEvent(event, args, 'Interstitial');
-      },
-    );
-    interstitialAd.load();
+    
   }
   
-void handleEvent(
-      AdmobAdEvent event, Map<String, dynamic> args, String adType) {
-    switch (event) {
-      case AdmobAdEvent.loaded:
-        print('New Admob $adType Ad loaded!');
-        break;
-      case AdmobAdEvent.opened:
-        print('Admob $adType Ad opened!');
-        break;
-      case AdmobAdEvent.closed:
-        print('Admob $adType Ad closed!');
-        break;
-      case AdmobAdEvent.failedToLoad:
-        print('Admob $adType failed to load. :(');
-        break;
-
-      default:
-    }
-  }
 
 
   final pages = [StartPage(), FantiPage(), HuoxingPage(), MyPage()];
@@ -137,27 +108,7 @@ void handleEvent(
       
       body: pages[_position],
 
-      // body: AdmobBanner(
-      //     adUnitId: "ca-app-pub-3940256099942544/2934735716",
-      //     adSize: bannerSize,
-      //     listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-      //       handleEvent(event, args, 'Banner');
-      //     },
-      //   ),
-
-    //   body: Column(
-        
-    //     children: [
-    //       pages[_position],
-    //     // AdmobBanner(
-    //     //   adUnitId: "ca-app-pub-3940256099942544/2934735716",
-    //     //   adSize: bannerSize,
-    //     //   listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-    //     //     handleEvent(event, args, 'Banner');
-    //     //   },
-    //     // ),
-    //     ],
-    // ),
+     
       
     );
   }
