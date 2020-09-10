@@ -10,6 +10,8 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
+    final FocusNode _focusNode = FocusNode();
+
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
   var ad = new admob_info();
   AdmobBannerSize bannerSize;
@@ -20,6 +22,13 @@ class _StartPageState extends State<StartPage> {
     ad.bannerSize = AdmobBannerSize.BANNER;
     ad.init_screenad();
   }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,20 +65,47 @@ class _StartPageState extends State<StartPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
+
+           
+        _buildTextField(context),
+         _buildSubmitBtn(),
+           
             new_flatButton,
-            Text(
-              'You have pushed the button this many times:',
-            ),
+           
             new_banner,
-            Text(
-              'You have pushed the button this many times:',
-            ),
+            
           ],
         ),
       ),
     );
+
   }
+  Container _buildTextField(BuildContext context) {
+    return Container(
+      width: 300,
+      child: TextField(
+        style: TextStyle(color: Colors.blue),
+        minLines: 3,
+        maxLines: 5,
+        cursorColor: Colors.green,
+        cursorRadius: Radius.circular(3),
+        cursorWidth: 5,
+        showCursor: true,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(10),
+          hintText: "请输入...",
+          border: OutlineInputBorder(),
+        ),
+        onChanged: (v) {},
+      ),
+    );
+  }
+
+  _buildSubmitBtn() => FlatButton(
+      color: Colors.blue,
+      child: Text(
+        "提交",
+        style: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+      onPressed: () => FocusScope.of(context).requestFocus(_focusNode));
 }

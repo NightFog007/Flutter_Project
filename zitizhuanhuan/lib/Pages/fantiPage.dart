@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-    import 'package:admob_flutter/admob_flutter.dart';
+import 'package:admob_flutter/admob_flutter.dart';
 import '../admob_info.dart';
 
 class FantiPage extends StatefulWidget {
