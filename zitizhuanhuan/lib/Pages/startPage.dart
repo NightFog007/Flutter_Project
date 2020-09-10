@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import '../admob_info.dart';
+import 'package:dio/dio.dart';
 
 class StartPage extends StatefulWidget {
   StartPage({Key key, this.title}) : super(key: key);
@@ -10,7 +11,35 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-    final FocusNode _focusNode = FocusNode();
+
+  var input_text = '测试的中文啊';
+
+    void getHttp(input_text) async {
+    try {
+      Response response = await Dio().get(
+          "http://japi.juhe.cn/charconvert/change.from?text=" + input_text + "&type=2&key=3f598eb8834c968feefe1a63f1fbeabe");
+      // var tmp = response.data.toString();
+      var tmp = response.data;
+      print("-------------");
+      print(tmp);
+
+      var tmp2 = tmp["returnObj"];
+
+      final_text = tmp2[0];
+
+      print(final_text);
+
+      setState(() {
+        print("刷新");
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+
+  var final_text = "none";
+  final FocusNode _focusNode = FocusNode();
 
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
   var ad = new admob_info();
@@ -29,12 +58,11 @@ class _StartPageState extends State<StartPage> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     var new_banner = AdmobBanner(
       adUnitId: ad.bannerUnitIdOne,
-      adSize: AdmobBannerSize(width: 320, height: 90, name: 'BANNER'),
+      adSize: AdmobBannerSize(width: 320, height: 50, name: 'BANNER'),
       // adSize: ad.bannerSize,
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         ad.handleEvent(event, args, 'Banner');
@@ -65,21 +93,38 @@ class _StartPageState extends State<StartPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
-           
-        _buildTextField(context),
-         _buildSubmitBtn(),
-           
-            new_flatButton,
-           
             new_banner,
-            
+            _buildTextField(context),
+            _buildSubmitBtn(),
+        
+            //new_flatButton,
+          
+            Text(
+     final_text,
+      style: TextStyle(
+          fontSize: 50,
+          color: Colors.white,
+          backgroundColor: Colors.black,
+          shadows: [
+            Shadow(
+                color: Colors.cyanAccent, 
+                offset: Offset(1, 1), 
+                blurRadius: 10),
+            Shadow(
+                color: Colors.blue, 
+                offset: Offset(-0.1, 0.1), 
+                blurRadius: 10),
+          ]),),
+
+
+            Spacer(),
+            new_banner,
           ],
         ),
       ),
     );
-
   }
+
   Container _buildTextField(BuildContext context) {
     return Container(
       width: 300,
@@ -107,5 +152,12 @@ class _StartPageState extends State<StartPage> {
         "提交",
         style: TextStyle(color: Colors.white, fontSize: 16),
       ),
-      onPressed: () => FocusScope.of(context).requestFocus(_focusNode));
+      // onPressed: () => FocusScope.of(context).requestFocus(_focusNode)
+      onPressed: (){
+        getHttp('哈哈哈');
+      },
+
+
+
+      );
 }
