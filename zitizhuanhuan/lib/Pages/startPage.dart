@@ -1,3 +1,6 @@
+import '../New_Widgets/new_button.dart';
+import '../New_Widgets/new_text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import '../admob_info.dart';
@@ -12,37 +15,43 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
 
-  var input_text = '测试的中文啊';
+    var input_text = '明知道让你离开他的世界不可能会';
 
-    void getHttp(input_text) async {
+  void getHttp(input_text, input_type) async {
     try {
       Response response = await Dio().get(
-          "http://japi.juhe.cn/charconvert/change.from?text=" + input_text + "&type=2&key=3f598eb8834c968feefe1a63f1fbeabe");
-      // var tmp = response.data.toString();
+          "http://japi.juhe.cn/charconvert/change.from?text=" +
+              input_text +
+              "&type=" +
+              input_type +
+              "&key=3f598eb8834c968feefe1a63f1fbeabe");
+
       var tmp = response.data;
       print("-------------");
-      print(tmp);
 
-      var tmp2 = tmp["returnObj"];
+      var new_index = tmp.indexOf('"outstr":"') + 10;
 
-      final_text = tmp2[0];
+      var final_text = tmp.substring(new_index);
 
-      print(final_text);
-
-      setState(() {
-        print("刷新");
-      });
+      var xx = final_text.indexOf('"');
+      var yyy = final_text.substring(0, xx);
+      // print("***********************************************");
+      // print(yyy);
+      textKey.currentState.onPressed(yyy);
     } catch (e) {
       print(e);
     }
   }
 
 
-  var final_text = "none";
-  final FocusNode _focusNode = FocusNode();
 
-  GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
+  GlobalKey<TextWidgetState> textKey = GlobalKey();  //同步刷新数据
+
+  final TextEditingController controller = TextEditingController();  //监听文本输入框
+
+
   var ad = new admob_info();
+
   AdmobBannerSize bannerSize;
 
   @override
@@ -54,37 +63,22 @@ class _StartPageState extends State<StartPage> {
 
   @override
   void dispose() {
-    _focusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    controller.addListener(() {
+      print('你输入的内容为:${controller.text}');
+      input_text = controller.text;
+    });
+
     var new_banner = AdmobBanner(
       adUnitId: ad.bannerUnitIdOne,
-      adSize: AdmobBannerSize(width: 320, height: 50, name: 'BANNER'),
-      // adSize: ad.bannerSize,
+      // adSize: AdmobBannerSize(width: 320, height: 50, name: 'BANNER'),
+      adSize: ad.bannerSize,
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         ad.handleEvent(event, args, 'Banner');
-      },
-    );
-
-    var new_flatButton = FlatButton(
-      color: Colors.lightGreen,
-      // color: Color.fromARGB(0, 22, 17, 175),
-      child: Text(
-        "点我,来一句情话吧",
-        style: TextStyle(fontSize: 20, color: Colors.white),
-      ),
-      textColor: Colors.white,
-
-      onPressed: () async {
-        print("hahahaha");
-        if (await ad.interstitialAd.isLoaded) {
-          ad.interstitialAd.show();
-        } else {
-          print("Interstitial ad is still loading...");
-        }
       },
     );
 
@@ -93,32 +87,23 @@ class _StartPageState extends State<StartPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new_banner,
-            _buildTextField(context),
-            _buildSubmitBtn(),
-        
-            //new_flatButton,
-          
-            Text(
-     final_text,
-      style: TextStyle(
-          fontSize: 50,
-          color: Colors.white,
-          backgroundColor: Colors.black,
-          shadows: [
-            Shadow(
-                color: Colors.cyanAccent, 
-                offset: Offset(1, 1), 
-                blurRadius: 10),
-            Shadow(
-                color: Colors.blue, 
-                offset: Offset(-0.1, 0.1), 
-                blurRadius: 10),
-          ]),),
 
+            new_banner,
+
+            _buildTextField(context),
+
+            ButtonWidget(
+              onPressed: () {
+                getHttp(input_text, "1");
+              },
+            ),
+
+            TextWidget(textKey),
 
             Spacer(),
+
             new_banner,
+
           ],
         ),
       ),
@@ -129,6 +114,8 @@ class _StartPageState extends State<StartPage> {
     return Container(
       width: 300,
       child: TextField(
+        keyboardType: TextInputType.text,
+        controller: controller,
         style: TextStyle(color: Colors.blue),
         minLines: 3,
         maxLines: 5,
@@ -145,19 +132,5 @@ class _StartPageState extends State<StartPage> {
       ),
     );
   }
-
-  _buildSubmitBtn() => FlatButton(
-      color: Colors.blue,
-      child: Text(
-        "提交",
-        style: TextStyle(color: Colors.white, fontSize: 16),
-      ),
-      // onPressed: () => FocusScope.of(context).requestFocus(_focusNode)
-      onPressed: (){
-        getHttp('哈哈哈');
-      },
-
-
-
-      );
+  
 }
