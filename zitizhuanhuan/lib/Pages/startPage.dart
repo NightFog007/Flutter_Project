@@ -76,12 +76,15 @@ class _StartPageState extends State<StartPage> {
             ButtonWidget(
               onPressed: () {
                 tmpgethttp.getHttp(input_text, "1", textKey);
+                print(textKey.currentState.toString());
               },
             ),
 
             TextWidget(textKey),
 
             // CopyButtonWidget(textKey),
+
+            // Text(textKey.currentContext.toString()),
         
       //   RaisedButton(
       //   child: const Text('一键复制'),
