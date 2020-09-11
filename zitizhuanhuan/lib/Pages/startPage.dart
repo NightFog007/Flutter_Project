@@ -79,8 +79,8 @@ class _StartPageState extends State<StartPage> {
 
     var new_banner = AdmobBanner(
       adUnitId: ad.bannerUnitIdOne,
-      // adSize: AdmobBannerSize(width: 320, height: 50, name: 'BANNER'),
-      adSize: ad.bannerSize,
+      adSize: AdmobBannerSize(width: 320, height: 50, name: 'BANNER'),
+      // adSize: ad.bannerSize,
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         ad.handleEvent(event, args, 'Banner');
       },
