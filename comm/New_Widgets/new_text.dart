@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//调用方法
+//TextWidget(textKey),
+
 class TextWidget extends StatefulWidget {
   TextWidget(Key key) : super(key: key);
 

@@ -2,6 +2,13 @@ import 'new_text.dart';
 
 import 'package:flutter/material.dart';
 
+//调用方法
+// ButtonWidget(
+//       onPressed: () {
+//             getHttp(input_text, "1");
+//       },
+// ),
+
 typedef OnPressed();
 
 class ButtonWidget extends StatefulWidget {
