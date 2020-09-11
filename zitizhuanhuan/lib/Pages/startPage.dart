@@ -6,6 +6,8 @@ import 'package:admob_flutter/admob_flutter.dart';
 import '../admob_info.dart';
 import 'package:dio/dio.dart';
 
+import 'package:zitizhuanhuan/myClass.dart';
+
 class StartPage extends StatefulWidget {
   StartPage({Key key, this.title}) : super(key: key);
   final String title;
@@ -14,6 +16,8 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
+
+  var tmpgethttp = MyClass();
 
     var input_text = '明知道让你离开他的世界不可能会';
 
@@ -94,7 +98,8 @@ class _StartPageState extends State<StartPage> {
 
             ButtonWidget(
               onPressed: () {
-                getHttp(input_text, "1");
+                // getHttp(input_text, "1");
+                tmpgethttp.getHttp(input_text, "1", textKey);
               },
             ),
 
@@ -132,5 +137,5 @@ class _StartPageState extends State<StartPage> {
       ),
     );
   }
-  
+
 }
