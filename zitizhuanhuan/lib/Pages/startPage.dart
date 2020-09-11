@@ -1,5 +1,7 @@
 import '../New_Widgets/new_button.dart';
 import '../New_Widgets/new_text.dart';
+import '../New_Widgets/copy_button.dart';
+import 'package:zitizhuanhuan/copy.dart';
 
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
@@ -21,32 +23,7 @@ class _StartPageState extends State<StartPage> {
 
     var input_text = '明知道让你离开他的世界不可能会';
 
-  void getHttp(input_text, input_type) async {
-    try {
-      Response response = await Dio().get(
-          "http://japi.juhe.cn/charconvert/change.from?text=" +
-              input_text +
-              "&type=" +
-              input_type +
-              "&key=3f598eb8834c968feefe1a63f1fbeabe");
-
-      var tmp = response.data;
-      print("-------------");
-
-      var new_index = tmp.indexOf('"outstr":"') + 10;
-
-      var final_text = tmp.substring(new_index);
-
-      var xx = final_text.indexOf('"');
-      var yyy = final_text.substring(0, xx);
-      // print("***********************************************");
-      // print(yyy);
-      textKey.currentState.onPressed(yyy);
-    } catch (e) {
-      print(e);
-    }
-  }
-
+ 
 
 
   GlobalKey<TextWidgetState> textKey = GlobalKey();  //同步刷新数据
@@ -98,12 +75,22 @@ class _StartPageState extends State<StartPage> {
 
             ButtonWidget(
               onPressed: () {
-                // getHttp(input_text, "1");
                 tmpgethttp.getHttp(input_text, "1", textKey);
               },
             ),
 
             TextWidget(textKey),
+
+            // CopyButtonWidget(textKey),
+        
+      //   RaisedButton(
+      //   child: const Text('一键复制'),
+      //   onPressed: () {
+      //     ClipboardData data = new ClipboardData(text:'123');
+      //     Clipboard.setData(data);
+      //     ToastHelper.showToast(context, "复制成功");
+      //   },
+      // ),
 
             Spacer(),
 
