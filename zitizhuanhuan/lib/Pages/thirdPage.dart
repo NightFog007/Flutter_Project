@@ -8,14 +8,14 @@ import '../admob_info.dart';
 
 import 'package:zitizhuanhuan/myClass.dart';
 
-class StartPage extends StatefulWidget {
-  StartPage({Key key, this.title}) : super(key: key);
+class ThirdPage extends StatefulWidget {
+  ThirdPage({Key key, this.title}) : super(key: key);
   final String title;
   @override
-  _StartPageState createState() => _StartPageState();
+  _ThirdPageState createState() => _ThirdPageState();
 }
 
-class _StartPageState extends State<StartPage> {
+class _ThirdPageState extends State<ThirdPage> {
   var tmpgethttp = MyClass();
 
   var input_text = '明知道让你离开他的世界不可能会';
@@ -69,7 +69,7 @@ class _StartPageState extends State<StartPage> {
             _buildTextField(context),
             ButtonWidget(
               onPressed: () {
-                tmpgethttp.getHttp(input_text, "1", textKey);
+                tmpgethttp.getHttp(input_text, "0", textKey);
                 print(textKey.currentState.toString());
               },
             ),

@@ -18,6 +18,7 @@ class TextWidgetState extends State<TextWidget> {
   String _text="";
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
+
   @override
   Widget build(BuildContext context) {
     return Center(

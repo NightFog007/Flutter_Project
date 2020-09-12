@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Pages/fantiPage.dart';
-import 'Pages/huoxingPage.dart';
+import 'Pages/secondPage.dart';
+import 'Pages/thirdPage.dart';
 import 'Pages/myPage.dart';
 import 'Pages/startPage.dart';
 import 'package:admob_flutter/admob_flutter.dart';
@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   
 
 
-  final pages = [StartPage(), FantiPage(), HuoxingPage(), MyPage()];
+  final pages = [StartPage(), SecondPage(), ThirdPage(), MyPage()];
 
 
   var _position = 0;
@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "火星":Icons.toys,
     "简体":Icons.favorite,
     // "手册":Icons.class_,
-    "设置":Icons.account_circle,
+    // "设置":Icons.account_circle,
   };
   final _colors = [
     Colors.lightGreen,
