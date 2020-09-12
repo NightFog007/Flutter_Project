@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
        
+        
         primarySwatch: Colors.orange,
-         
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: '字体转换'),
@@ -59,11 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
   var _position = 0;
 
   final iconsMap = {
-    "图鉴":Icons.home,
-    "动态":Icons.toys,
-    "喜欢":Icons.favorite,
+    "繁体":Icons.home,
+    "火星":Icons.toys,
+    "简体":Icons.favorite,
     // "手册":Icons.class_,
-    "我的":Icons.account_circle,
+    "设置":Icons.account_circle,
   };
   final _colors = [
     Colors.lightGreen,
@@ -92,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
 
+      
       bottomNavigationBar: BottomNavigationBar(
         items: iconsMap.keys
         .map((key) => BottomNavigationBarItem(

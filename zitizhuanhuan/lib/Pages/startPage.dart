@@ -59,7 +59,9 @@ class _StartPageState extends State<StartPage> {
     );
 
     return Scaffold(
+      backgroundColor: Colors.limeAccent,
       body: Center(
+        
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
