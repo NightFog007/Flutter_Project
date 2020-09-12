@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 //调用方法
 //TextWidget(textKey),
@@ -14,6 +16,7 @@ class TextWidget extends StatefulWidget {
 
 class TextWidgetState extends State<TextWidget> {
   String _text="";
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,10 @@ class TextWidgetState extends State<TextWidget> {
     );
   }
 
-  void onPressed(String count) {
+  void onPressed(String count)  async {
+      SharedPreferences prefes = await _prefs;
+      prefes.setString("res_text", count);
+
     setState(() {
       _text = count;
     });
