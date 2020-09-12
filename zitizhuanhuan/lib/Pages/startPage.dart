@@ -1,12 +1,10 @@
 import '../New_Widgets/new_button.dart';
 import '../New_Widgets/new_text.dart';
 import '../New_Widgets/copy_button.dart';
-import 'package:zitizhuanhuan/copy.dart';
 
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import '../admob_info.dart';
-import 'package:dio/dio.dart';
 
 import 'package:zitizhuanhuan/myClass.dart';
 
@@ -18,18 +16,15 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-
   var tmpgethttp = MyClass();
 
-    var input_text = '明知道让你离开他的世界不可能会';
+  var input_text = '明知道让你离开他的世界不可能会';
 
- 
+  // Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
+  GlobalKey<TextWidgetState> textKey = GlobalKey(); //同步刷新数据
 
-  GlobalKey<TextWidgetState> textKey = GlobalKey();  //同步刷新数据
-
-  final TextEditingController controller = TextEditingController();  //监听文本输入框
-
+  final TextEditingController controller = TextEditingController(); //监听文本输入框
 
   var ad = new admob_info();
 
@@ -68,37 +63,18 @@ class _StartPageState extends State<StartPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
             new_banner,
-
             _buildTextField(context),
-
             ButtonWidget(
               onPressed: () {
                 tmpgethttp.getHttp(input_text, "1", textKey);
                 print(textKey.currentState.toString());
               },
             ),
-
             TextWidget(textKey),
-
-            // CopyButtonWidget(textKey),
-
-            // Text(textKey.currentContext.toString()),
-        
-      //   RaisedButton(
-      //   child: const Text('一键复制'),
-      //   onPressed: () {
-      //     ClipboardData data = new ClipboardData(text:'123');
-      //     Clipboard.setData(data);
-      //     ToastHelper.showToast(context, "复制成功");
-      //   },
-      // ),
-
+            CopyButtonWidget(),
             Spacer(),
-
             new_banner,
-
           ],
         ),
       ),
@@ -127,5 +103,4 @@ class _StartPageState extends State<StartPage> {
       ),
     );
   }
-
 }

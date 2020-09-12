@@ -42,7 +42,7 @@ class TextWidgetState extends State<TextWidget> {
 
   void onPressed(String count)  async {
       SharedPreferences prefes = await _prefs;
-      prefes.setString("res_text", count); //存入sharedPreferences实例, 给复制按钮调用
+      prefes.setString("res_text", count);
 
     setState(() {
       _text = count;
