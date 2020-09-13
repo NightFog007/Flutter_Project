@@ -18,15 +18,15 @@ class admob_info {
       : 'ca-app-pub-9010870803829618~8140498881';
 
   final String bannerUnitIdOne = Platform.isAndroid
-      ? 'ca-app-pub-9010870803829618/2460288445'
-      : 'ca-app-pub-9010870803829618/2460288445';
+      ? 'ca-app-pub-9010870803829618/9617232086'
+      : 'ca-app-pub-9010870803829618/9617232086';
 
    final String bannerUnitIdTwo = Platform.isAndroid
-      ? 'ca-app-pub-9010870803829618/5854614646'
-      : 'ca-app-pub-9010870803829618/2460288445';
+      ? 'ca-app-pub-9010870803829618/9617232086'
+      : 'ca-app-pub-9010870803829618/9617232086';
 
   final String screenUnitId = Platform.isAndroid
-      ? 'ca-app-pub-9010870803829618/1754258542'
+      ? 'ca-app-pub-9010870803829618/5573320887'
       : 'ca-app-pub-9010870803829618/5573320887';
 
   final String videoUnitId = Platform.isAndroid
