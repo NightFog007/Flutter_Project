@@ -2,7 +2,7 @@
 # See https://dart.dev/tools/pub/glossary#lockfile
 packages:
   admob_flutter:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: admob_flutter
       url: "https://pub.flutter-io.cn"
@@ -122,7 +122,7 @@ packages:
     source: hosted
     version: "1.1.8"
   oktoast:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: oktoast
       url: "https://pub.flutter-io.cn"
@@ -185,7 +185,7 @@ packages:
     source: hosted
     version: "1.4.4"
   shared_preferences:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: shared_preferences
       url: "https://pub.flutter-io.cn"
@@ -232,7 +232,7 @@ packages:
     source: hosted
     version: "1.7.0"
   sqflite:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: sqflite
       url: "https://pub.flutter-io.cn"
@@ -295,7 +295,7 @@ packages:
     source: hosted
     version: "1.2.0"
   url_launcher:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: url_launcher
       url: "https://pub.flutter-io.cn"

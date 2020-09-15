@@ -16,6 +16,7 @@ import 'dart:io';
 
 // void main() => runApp(MyApp());
 void main() {
+
   Admob.initialize(getAppId());
   runApp(MyApp());
 }
