@@ -101,7 +101,7 @@ class AppState extends State<App> {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text('最美古文'),
+        title: Text('最美古诗词'),
       ),
       //底部导航按钮
       bottomNavigationBar: BottomNavigationBar(
