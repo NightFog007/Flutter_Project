@@ -3,17 +3,14 @@ import 'package:dio/dio.dart';
 import 'dart:ui';
 import 'package:admob_flutter/admob_flutter.dart';
 
-// import './common/http_service.dart';
-// import 'dart:convert';
-// import 'package:provider/provider.dart';
-// import './provider/product_provider.dart';
-// import './common/question_data.dart';
 import './copy.dart';
 
-class FourPage extends StatelessWidget {
+class TwoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner:false, 
+
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -34,7 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
   AdmobBannerSize bannerSize;
   AdmobInterstitial interstitialAd;
@@ -44,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     bannerSize = AdmobBannerSize.BANNER;
     interstitialAd = AdmobInterstitial(
-      adUnitId: "ca-app-pub-9010870803829618/1375664498",
+      adUnitId: "ca-app-pub-9010870803829618/7063861985",
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         if (event == AdmobAdEvent.closed) interstitialAd.load();
         handleEvent(event, args, 'Interstitial');
@@ -75,25 +71,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var res_text = "古来万事东流水";
 
-  onFresh(){
-    setState(() {
-      
-    });
+  onFresh() {
+    setState(() {});
   }
 
   Future<String> mockNetworkData() async {
     //请求url
     var url =
-        'http://api.tianapi.com/txapi/dialogue/index?key=ca4f25b93495f1001c3a81dd9972b89c';
+        'http://api.tianapi.com/txapi/gjmj/index?key=ca4f25b93495f1001c3a81dd9972b89c';
     try {
       Response response = await Dio().get(url);
       print(response);
       print("------------");
       var ttt = response.data["newslist"];
-      var res_text = ttt[0]["dialogue"];
-      var title = ttt[0]["source"];
-      res_text = res_text +  "\n"+ "From " + title;
-      // print(ttt[0]["content"]);
+      var res_text = ttt[0]["content"] + '\n'  + '\n' + ttt[0]["source"] ;
+      print(ttt[0]["content"]);
       return res_text;
     } catch (e) {
       print(e);
@@ -118,12 +110,21 @@ class _MyHomePageState extends State<MyHomePage> {
           // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // Container(
-           
+            //   color: Colors.red,
+            //   //时间顶部对齐
+            //   alignment: AlignmentDirectional.topStart,
+            //   height: 70,
+            //   // margin: const EdgeInsets.only(right: 2.0,top: 22.0),
+            //   child: Text(
+            //     //格式化时间
+            //     '广告占位',
+            //     style: TextStyle(fontSize: 22.0, color: Colors.white),
+            //   ),
             // ),
 
             Container(
               child: AdmobBanner(
-                adUnitId: "ca-app-pub-9010870803829618/6614999991",
+                adUnitId: "ca-app-pub-9010870803829618/6800972251",
                 adSize: bannerSize,
                 listener: (AdmobAdEvent event, Map<String, dynamic> args) {
                   handleEvent(event, args, 'Banner');
@@ -138,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               child: FlatButton(
                 color: Colors.yellow,
-                child: Text("刷新文案"),
+                child: Text("刷新名句"),
                 onPressed: () async {
           if (await interstitialAd.isLoaded) {
             interstitialAd.show();

@@ -1,4 +1,4 @@
-name: wenda_framework
+name: beauty_shici
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -27,7 +27,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
+  cupertino_icons: ^1.0.1
   dio: 3.0.10
   provider: ^3.0.0+1
   admob_flutter: ^0.3.4
@@ -48,45 +48,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
-  assets:
-    #加载页面图片资源
-  - images/loading.jpeg
-
-
-
-  - assets/backpic.png
-
-  #底部tab切换图片资源
-  - images/contact_list_normal.png
-  - images/contact_list_pressed.png
-  - images/profile_normal.png
-  - images/profile_pressed.png
-  - images/message_normal.png
-  - images/message_pressed.png
-  - images/close.png
-  - images/shi.png
-  - images/taici.png
-
-  #菜单按钮
-  - images/icon_menu_addfriend.png
-  - images/icon_menu_group.png
-
-  #好友模块图标
-  - images/icon_addfriend.png
-  - images/icon_groupchat.png
-  - images/icon_public.png
-
-  #我的模块图标
-  - images/icon_me_friends.png
-  - images/icon_me_photo.png
-  - images/icon_me_file.png
-  - images/icon_me_service.png
-  - images/icon_me_message.png
-  - images/icon_me_clear.png
-  - images/code.png
-  - images/yixiu.jpeg
-  - images/my_wechat.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
