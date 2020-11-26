@@ -14,7 +14,7 @@ test_app_id = 'ca-app-pub-3940256099942544~1458002511'
 # os.chdir(res_path)
 # print(os.path.abspath('.'))
 
-# 修改文本的指定行
+# 修改文本的指定行; 找到old_text,并且在它上方插入new_text
 def change_line(file_path,old_text,new_text):
 
     file = open( file_path, "r" ) 
@@ -58,6 +58,72 @@ change_line(main_path,old_info,new_info)
 old_info = 'import'
 new_info = 'import \'package:admob_flutter/admob_flutter.dart\';\n'
 change_line(main_path,old_info,new_info)
+
+old_info = 'int _counter = 0;'
+
+new_info = '''
+
+   GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
+  AdmobBannerSize bannerSize;
+  AdmobInterstitial interstitialAd;
+  
+    @override
+  void initState() {
+    super.initState();
+    bannerSize = AdmobBannerSize.BANNER;
+    interstitialAd = AdmobInterstitial(
+      adUnitId: "ca-app-pub-3940256099942544/4411468910",
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        if (event == AdmobAdEvent.closed) interstitialAd.load();
+        handleEvent(event, args, 'Interstitial');
+      },
+    );
+    interstitialAd.load();
+  }
+  
+void handleEvent(
+      AdmobAdEvent event, Map<String, dynamic> args, String adType) {
+    switch (event) {
+      case AdmobAdEvent.loaded:
+        print('New Admob $adType Ad loaded!');
+        break;
+      case AdmobAdEvent.opened:
+        print('Admob $adType Ad opened!');
+        break;
+      case AdmobAdEvent.closed:
+        print('Admob $adType Ad closed!');
+        break;
+      case AdmobAdEvent.failedToLoad:
+        print('Admob $adType failed to load. :(');
+        break;
+      default:
+    }
+  }
+  
+  //使用横幅,直接当控件使用;
+//      AdmobBanner(
+//               adUnitId: "ca-app-pub-3940256099942544/2934735716",
+//               adSize: bannerSize,
+//               listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+//                 handleEvent(event, args, 'Banner');
+//               },
+//             ),
+
+//使用插页的按钮
+
+//       onPressed: () async {
+//           if (await interstitialAd.isLoaded) {
+//             interstitialAd.show();
+//           } else {
+//             print("Interstitial ad is still loading...");
+//           }
+//         },
+  
+'''
+
+change_line(main_path,old_info,new_info)
+
+
 
 # 5. 复制自定义控件
 # os.system("cp  -r %s ./lib/" % new_widgets_path )
