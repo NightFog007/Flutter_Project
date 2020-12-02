@@ -23,7 +23,7 @@ def change_line(file_path,old_text,new_text):
 
     if pos != -1:
         print("找到了")
-        content = content[:pos] + new_text + content[pos:] 
+        content = content[:pos] + new_text + content[pos:] +'\n'
         file.close() 
         file = open( file_path, "w" ) 
         file.write( content ) 
@@ -34,7 +34,21 @@ def change_line(file_path,old_text,new_text):
 
 # 1. 修改pubspec.yaml内容
 path = './pubspec.yaml'
-change_line(path,'cupertino_icons','admob_flutter: ^0.3.4\n  dio: ^3.0.9\n  shared_preferences: ^0.5.10\n  ')
+
+new_path = '''
+  admob_flutter: ^0.3.4
+  dio: ^3.0.9 
+  shared_preferences: ^0.5.10
+  provider: ^3.0.0+1
+  sqflite: ^1.1.7+1
+  path_provider: ^1.4.0
+'''
+
+# change_line(path,'cupertino_icons','admob_flutter: ^0.3.4\n  dio: ^3.0.9\n  shared_preferences: ^0.5.10\n    provider: ^3.0.0+1\n    sqflite: ^1.1.7+1\n    path_provider: ^1.4.0\n  ')
+change_line(path,'  cupertino_icons',new_path)
+
+
+
 
 # 2. 修改 info.list内容
 infoPlist_path = now_path + '/ios/Runner/Info.plist'
@@ -43,6 +57,11 @@ old_info = '<key>CFBundleDevelopmentRegion'
 new_info = '<key>GADApplicationIdentifier</key>\n<string>%s</string>\n<key>io.flutter.embedded_views_preview</key>\n<true/>\n' % test_app_id
 
 change_line(infoPlist_path,old_info,new_info)
+
+# 3.重构main函数
+main_path = '/Users/gsky/my_github/flutter_project/init_main/*'
+
+os.system("cp  -r %s ./lib/" % main_path )
 
 
 # 3. 复制admob_info.dart文件
