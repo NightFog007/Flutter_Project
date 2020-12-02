@@ -1,5 +1,6 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
+import './admob_info.dart';
 
 
 void handleEvent(AdmobAdEvent event, Map<String, dynamic> args, String adType) {
@@ -24,7 +25,7 @@ void handleEvent(AdmobAdEvent event, Map<String, dynamic> args, String adType) {
 //! 使用方式 - ad_banner()当做控件用.
 Widget ad_banner() {
   return AdmobBanner(
-    adUnitId: "ca-app-pub-3940256099942544/2934735716",
+    adUnitId: test_banner,
     // adSize: bannerSize,
     adSize: AdmobBannerSize(width: 320, height: 50, name: 'BANNER'),
     listener: (AdmobAdEvent event, Map<String, dynamic> args) {
@@ -39,7 +40,7 @@ void ad_button() async {
   AdmobInterstitial interstitialAd;
 
   interstitialAd = AdmobInterstitial(
-    adUnitId: "ca-app-pub-3940256099942544/4411468910",
+    adUnitId: test_intersitital,
     listener: (AdmobAdEvent event, Map<String, dynamic> args) {
       if (event == AdmobAdEvent.closed) interstitialAd.load();
       handleEvent(event, args, 'Interstitial');

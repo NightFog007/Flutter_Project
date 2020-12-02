@@ -5,6 +5,9 @@ import 'dart:io' show Platform;
 import 'package:admob_flutter/admob_flutter.dart';
 
 
+var test_app_id = 'ca-app-pub-3940256099942544~1458002511';
+var test_banner = 'ca-app-pub-3940256099942544/2934735716';
+var test_intersitital = 'ca-app-pub-3940256099942544/4411468910';
 
 
 

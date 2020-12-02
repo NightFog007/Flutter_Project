@@ -1,8 +1,8 @@
 import os,sys,re
 
-admobinfo_path = '/Users/gsky/my_github/flutter_project/comm/admob_info.dart'
-new_widgets_path = '/Users/gsky/my_github/flutter_project/comm/new_widgets'
-my_file_path = '/Users/gsky/my_github/flutter_project/comm'
+admobinfo_path = '/Users/gsky/my_github/flutter_project/init_flutter/comm/admob_info.dart'
+new_widgets_path = '/Users/gsky/my_github/flutter_project/init_flutter/comm/new_widgets'
+my_file_path = '/Users/gsky/my_github/flutter_project/init_flutter/comm'
 
 now_path = os.path.abspath('.')
 # res_path = input("input your path: ")
@@ -59,7 +59,7 @@ new_info = '<key>GADApplicationIdentifier</key>\n<string>%s</string>\n<key>io.fl
 change_line(infoPlist_path,old_info,new_info)
 
 # 3.重构main函数
-main_path = '/Users/gsky/my_github/flutter_project/init_main/*'
+main_path = '/Users/gsky/my_github/flutter_project/init_flutter/init_main/*'
 
 os.system("cp  -r %s ./lib/" % main_path )
 
@@ -70,12 +70,19 @@ os.system("cp  -r %s ./lib/" % main_path )
 # 4. 修改main文件
 main_path = './lib/main.dart'
 old_info = 'runApp'
-new_info = 'Admob.initialize("%s"); \n  ' % test_app_id
+new_info = 'Admob.initialize(test_app_id); \n  '
 
 change_line(main_path,old_info,new_info)
 
 old_info = 'import'
-new_info = 'import \'package:admob_flutter/admob_flutter.dart\';\n'
+# new_info = 'import \'package:admob_flutter/admob_flutter.dart\';\n'
+new_info = '''
+import 'package:admob_flutter/admob_flutter.dart';
+import './comm/admob_info.dart';
+//! 注意,广告的app_id在ios plist里是测试id,需要改为正式的
+'''
+
+
 change_line(main_path,old_info,new_info)
 
 old_info = 'int _counter = 0;'
