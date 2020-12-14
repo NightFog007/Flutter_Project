@@ -39,7 +39,7 @@ new_path = '''
   admob_flutter: ^0.3.4
   dio: ^3.0.9 
   shared_preferences: ^0.5.10
-  provider: ^3.0.0+1
+  provider: ^4.0.4
   sqflite: ^1.1.7+1
   path_provider: ^1.4.0
 '''

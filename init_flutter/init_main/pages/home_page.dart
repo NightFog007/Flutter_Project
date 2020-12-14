@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home/home_content.dart';
+
+import 'AboutPage.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -10,6 +11,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+   var _message = '';
+
+  _onPushTop(BuildContext context) {
+    final future = Navigator.of(context)
+        .pushNamed('/detail', arguments: "a home message of naned route");
+
+    // 2.获取结果
+    future.then((res) {
+      setState(() {
+        _message = res;
+      });
+    });
+  }
+
   int _counter = 0;
 
   void _incrementCounter() {
@@ -21,7 +37,33 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title),),
-      body: HomeContent(count: _counter,),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              '显示结果: ' + _message,
+            ),
+            FlatButton(
+              child: Text("跳转下一页", style: TextStyle(color: Colors.black)),
+              onPressed: () => _onPushTop(context),
+            ),
+            RaisedButton(
+              child: Text("打开关于页"),
+              onPressed: () {
+                Navigator.of(context).pushNamed(AboutPage.routeName,
+                    arguments: "a home message");
+              },
+            ),
+            RaisedButton(
+              child: Text("打开未知页面"),
+              onPressed: () {
+                Navigator.of(context).pushNamed("/abc");
+              },
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: _buildHomeButton()
     );
   }
