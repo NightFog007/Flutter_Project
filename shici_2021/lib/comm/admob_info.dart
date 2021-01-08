@@ -5,9 +5,9 @@ import 'dart:io' show Platform;
 import 'package:admob_flutter/admob_flutter.dart';
 
 
-var test_app_id = 'ca-app-pub-3940256099942544~1458002511';
-var test_banner = 'ca-app-pub-3940256099942544/2934735716';
-var test_intersitital = 'ca-app-pub-3940256099942544/4411468910';
+var test_app_id = 'ca-app-pub-9010870803829618~7151491891';
+var test_banner = 'ca-app-pub-9010870803829618/6800972251';
+var test_intersitital = 'ca-app-pub-9010870803829618/2477927326';
 
 
 
@@ -17,20 +17,20 @@ class admob_info {
   AdmobInterstitial interstitialAd;
 
   final String appId = Platform.isAndroid
-      ? 'ca-app-pub-9010870803829618~8140498881'
-      : 'ca-app-pub-9010870803829618~8140498881';
+      ? 'ca-app-pub-9010870803829618~7151491891'
+      : 'ca-app-pub-9010870803829618~7151491891';
 
   final String bannerUnitIdOne = Platform.isAndroid
-      ? 'ca-app-pub-9010870803829618/2460288445'
-      : 'ca-app-pub-9010870803829618/2460288445';
+      ? 'ca-app-pub-9010870803829618/6800972251'
+      : 'ca-app-pub-9010870803829618/6800972251';
 
    final String bannerUnitIdTwo = Platform.isAndroid
-      ? 'ca-app-pub-9010870803829618/5854614646'
-      : 'ca-app-pub-9010870803829618/2460288445';
+      ? 'ca-app-pub-9010870803829618/6800972251'
+      : 'ca-app-pub-9010870803829618/6800972251';
 
   final String screenUnitId = Platform.isAndroid
-      ? 'ca-app-pub-9010870803829618/1754258542'
-      : 'ca-app-pub-9010870803829618/5573320887';
+      ? 'ca-app-pub-9010870803829618/2477927326'
+      : 'ca-app-pub-9010870803829618/2477927326';
 
   final String videoUnitId = Platform.isAndroid
       ? 'ca-app-pub-3940256099942544/5224354917'
