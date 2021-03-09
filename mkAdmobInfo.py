@@ -29,7 +29,7 @@ def change_line(file_path,old_text,new_text):
         file.write( content ) 
         file.close() 
     else:
-        print("没找到")
+        print("没找到"+str(file_path))
 
 
 # 1. 修改pubspec.yaml内容
@@ -146,9 +146,19 @@ void handleEvent(
 //         },
   
 '''
-
+main_path = './lib/pages/home_page.dart'
 change_line(main_path,old_info,new_info)
 
+
+
+old_info = 'import'
+# new_info = 'import \'package:admob_flutter/admob_flutter.dart\';\n'
+new_info = '''
+import 'package:admob_flutter/admob_flutter.dart';
+import '../comm/admob_info.dart';
+//! 注意,广告的app_id在ios plist里是测试id,需要改为正式的
+'''
+change_line(main_path,old_info,new_info)
 
 
 # 5. 复制自定义控件
