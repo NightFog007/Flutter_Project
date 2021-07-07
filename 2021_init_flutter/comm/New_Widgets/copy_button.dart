@@ -105,7 +105,7 @@ class _CopyButtonWidgetState extends State<CopyButtonWidget> {
         onPressed: () async {
           final SharedPreferences prefs = await _prefs;
           var tt_text = prefs.getString("res_text");
-          ClipboardData data = new ClipboardData(text: tt_text);
+          ClipboardData data = new ClipboardData(text: tt_text??'0');
           Clipboard.setData(data);
           ToastHelper.showToast(context, "复制成功");
         },
