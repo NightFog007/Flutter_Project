@@ -27,17 +27,17 @@ class ToastHelper {
       builder: (_) => widget,
     );
 
-    Overlay.of(context).insert(entry);
+    Overlay.of(context)?.insert(entry);
 
     Timer(const Duration(seconds: 2), () {
-      entry?.remove();
+      entry.remove();
     });
   }
 }
 
 class ClipboardData {
   /// Creates data for the system clipboard.
-  const ClipboardData({this.text});
+  const ClipboardData({required this.text});
 
   /// Plain text variant of this clipboard data.
   final String text;
@@ -65,7 +65,7 @@ typedef OnPressed();
 class CopyButtonWidget extends StatefulWidget {
   OnPressed onPressed;
 
-  CopyButtonWidget({this.onPressed});
+  CopyButtonWidget({required this.onPressed});
 
   @override
   State<StatefulWidget> createState() {

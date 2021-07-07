@@ -3,12 +3,12 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../comm/ads.dart';
 
-class HomePage extends StatefulWidget {
+class FourPage extends StatefulWidget {
     @override
-    createState() => new HomePageState();
+    createState() => new FourPageState();
 }
 
-class HomePageState  extends State<HomePage> {
+class FourPageState  extends State<FourPage> {
 
     var bannerAds = AdsBannerWidget();
 
@@ -29,7 +29,7 @@ class HomePageState  extends State<HomePage> {
     @override
     Widget build(BuildContext context) {
   			
-  		return new Text("hello");
+  		return new Text("four");
     }
 }
 

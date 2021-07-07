@@ -38,7 +38,7 @@ path = './pubspec.yaml'
 #   google_mobile_ads: ^0.13.1
 # '''
 
-change_line(path,'cupertino_icons','google_mobile_ads: ^0.13.1\n  dio: ^3.0.9\n  shared_preferences: ^0.5.10\n   provider: ^3.0.0+1\n   sqflite: ^1.1.7+1\n   path_provider: ^1.4.0\n  ')
+change_line(path,'cupertino_icons','google_mobile_ads: ^0.13.1\n  dio: ^3.0.9\n  shared_preferences: ^0.5.10\n  provider: ^3.0.0+1\n  sqflite: ^1.1.7+1\n  path_provider: ^1.4.0\n  ')
 # change_line(path,'  cupertino_icons',new_path)
 
 

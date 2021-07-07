@@ -22,11 +22,12 @@ class ToastHelper {
     var entry = OverlayEntry(
       builder: (_) => widget,
     );
-
-    Overlay.of(context).insert(entry);
+   
+    Overlay.of(context)?.insert(entry);
+    
 
     Timer(const Duration(seconds: 2), () {
-      entry?.remove();
+      entry.remove();
     });
   }
 }
@@ -35,7 +36,7 @@ class ToastHelper {
 
 class ClipboardData {
   /// Creates data for the system clipboard.
-  const ClipboardData({ this.text });
+  const ClipboardData({ required this.text });
 
   /// Plain text variant of this clipboard data.
   final String text;

@@ -14,7 +14,7 @@ typedef OnPressed();
 class ButtonWidget extends StatefulWidget {
   OnPressed onPressed;
 
-  ButtonWidget({this.onPressed});
+  ButtonWidget({required this.onPressed});
 
   @override
   State<StatefulWidget> createState() {
