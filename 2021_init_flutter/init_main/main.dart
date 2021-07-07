@@ -6,7 +6,7 @@ import 'pages/AboutPage.dart';
 import 'pages/UnknownPage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dart:io';
-import 'ads.dart';
+import '../comm/ads.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();

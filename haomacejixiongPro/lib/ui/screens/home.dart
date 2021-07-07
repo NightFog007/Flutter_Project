@@ -8,6 +8,7 @@ import '../widgets/mybottomnavbaritem.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:haomacejixiongPro/global.dart';
 import 'package:haomacejixiongPro/copy.dart';
+import 'package:admob_flutter/admob_flutter.dart';
 
 // class HomeScreen extends StatelessWidget {
 int _active = 0;
@@ -19,9 +20,41 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
+  AdmobBannerSize bannerSize;
+  AdmobInterstitial interstitialAd;
+
   @override
   void initState() {
     super.initState();
+    bannerSize = AdmobBannerSize.BANNER;
+    interstitialAd = AdmobInterstitial(
+      adUnitId: "ca-app-pub-9010870803829618/9968137595",
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        if (event == AdmobAdEvent.closed) interstitialAd.load();
+        handleEvent(event, args, 'Interstitial');
+      },
+    );
+    interstitialAd.load();
+  }
+
+  void handleEvent(
+      AdmobAdEvent event, Map<String, dynamic> args, String adType) {
+    switch (event) {
+      case AdmobAdEvent.loaded:
+        print('New Admob $adType Ad loaded!');
+        break;
+      case AdmobAdEvent.opened:
+        print('Admob $adType Ad opened!');
+        break;
+      case AdmobAdEvent.closed:
+        print('Admob $adType Ad closed!');
+        break;
+      case AdmobAdEvent.failedToLoad:
+        print('Admob $adType failed to load. :(');
+        break;
+      default:
+    }
   }
 
   @override
@@ -65,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
       var s4 = s2["result"];
       var s5 = s2["score"];
 
-      result_str = "凶吉结果: " + s4 + "\n" + "号码评分: " + s5 + "\n" + "号码解析: " + s3;
+      result_str = "凶吉结果: " + s4 + "\n" + "号码评分: " + s5 + "\n" + "号码解析: " + s3 ;
 
       setState(() {
         HomeScreen();
@@ -86,6 +119,8 @@ class _HomeScreenState extends State<HomeScreen> {
     // appAds.showFullScreenAd();
     // appAds.showBannerAd(state: this, anchorOffset: 500);
   }
+
+  
 
   int _selectedIndex = 0; //当前选中项索引
   final _widgetOptions = [
@@ -153,15 +188,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Spacer(),
-                    Text(
-                      "My Profile",
-                      style: Theme.of(context)
-                          .textTheme
-                          .display1
-                          .apply(color: Colors.white),
+                    // Text(
+                    //   "My Profile",
+                    //   style: Theme.of(context)
+                    //       .textTheme
+                    //       .display1
+                    //       .apply(color: Colors.white),
+                    // ),
+
+                    Container(
+                      alignment:Alignment.center,
+                      child: AdmobBanner(
+                        adUnitId: "ca-app-pub-9010870803829618/8330787683",
+                        adSize: bannerSize,
+                        listener:
+                            (AdmobAdEvent event, Map<String, dynamic> args) {
+                          handleEvent(event, args, 'Banner');
+                        },
+                      ),
                     ),
+
                     SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15.0),
@@ -173,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             SizedBox(
-                              height: 15.0,
+                              height: 10.0,
                             ),
                             Padding(
                               padding:
@@ -190,7 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 15.0,
+                                    width: 10.0,
                                   ),
                                   Text(
                                     // "${User.fullname}",
@@ -217,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             SizedBox(
-                              height: 15.0,
+                              height: 5.0,
                             ),
                             Padding(
                               padding:
@@ -254,20 +302,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                   prefixIcon:
                                       Icon(Icons.confirmation_number), //左侧图标
-                                  suffixText: _widgetOptionsDetail
-                                      .elementAt(_active)
-                                      .data, //右侧文本提示
+                                  // suffixText: _widgetOptionsDetail
+                                  //     .elementAt(_active)
+                                  //     .data, //右侧文本提示
                                 ),
                               ),
                             ),
                             SizedBox(
-                              height: 15.0,
+                              height: 5.0,
                             ),
                             Container(
                               padding: const EdgeInsets.all(15.0),
                               color: MyColors.red,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Align(
@@ -276,20 +325,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                       key:
                                           ValueKey<String>('SHOW INTERSTITIAL'),
                                       child: const Text('预测'),
-                                      onPressed: buttonPressed,
+                                      // onPressed: buttonPressed,
+                                      onPressed: () async {
+                                        getHttp();
+          if (await interstitialAd.isLoaded) {
+            interstitialAd.show();
+          } else {
+            print("Interstitial ad is still loading...");
+          }
+        },
                                     ),
                                   ),
-                                  
                                   Align(
                                     alignment: Alignment.bottomRight,
-                                    child:  RaisedButton(
-        child: const Text('一键复制'),
-        onPressed: () {
-          ClipboardData data = new ClipboardData(text: this.result_str);
-          Clipboard.setData(data);
-          ToastHelper.showToast(context, "复制成功");
-        },
-      ),
+                                    child: RaisedButton(
+                                      child: const Text('一键复制'),
+                                      onPressed: () {
+                                        ClipboardData data = new ClipboardData(
+                                            text: this.result_str);
+                                        Clipboard.setData(data);
+                                        ToastHelper.showToast(context, "复制成功");
+                                      },
+
+                                     
+
+
+                                    ),
                                   ),
                                 ],
                               ),
@@ -298,9 +359,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    Spacer(),
+                    // Spacer(),
                     Container(
-                      height: 300,
+                      height: 250,
+                      
                       child: AutoSizeText(
                         '$result_str',
                         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -322,18 +384,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     //                     .apply(color: Colors.white),
                     // ),
 
-                    SizedBox(
-                      height: 15,
+                    // SizedBox(
+                    //   height: 5,
+                    // ),
+                    Container(
+                      alignment:Alignment.center,
+                      child: AdmobBanner(
+                        adUnitId: "ca-app-pub-9010870803829618/7785357619",
+                        adSize: bannerSize,
+                        listener:
+                            (AdmobAdEvent event, Map<String, dynamic> args) {
+                          handleEvent(event, args, 'Banner');
+                        },
+                      ),
                     ),
-
-                    Spacer(),
+                    // Spacer(),
                   ],
                 ),
               ),
             ),
+
             Positioned(
               bottom: 0,
-              height: 70,
+              height: 60,
               left: 0,
               right: 0,
               child: Padding(
